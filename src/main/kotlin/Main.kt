@@ -15,6 +15,37 @@ fun main() {
         println(interestingthing)
     }
 
+    // forEach loop to iterate through the array by using it
+    interestingthings.forEach {
+        println(it)
+    }
 
+    // forEachIndexed loop to iterate through the array by using it
+    interestingthings.forEachIndexed { index, interestingThing ->
+        println("$interestingThing is at index $index")
+    }
 
+    val listOfThing = listOf("Kotlin", "Programming", "Comic Books")
+    listOfThing.forEach {
+        println(it)
+    }
+    println(listOfThing[0])
+    println(listOfThing.get(1))
+
+    val map = mapOf(1 to "a", 2 to "b", 3 to "c")
+    map.forEach { (key, value) ->
+        println("$key -> $value")
+    }
+    val map1 = map + (4 to "d")
+    map1.forEach { (key, value) ->
+        println("$key -> $value")
+    }
+
+    val mutableMap = mutableMapOf(1 to "a", 2 to "b", 3 to "c")
+    mutableMap.put(4, "d")
+    mutableMap.forEach { (key, value) ->
+        println("$key -> $value")
+    }
+
+    // 49:27
 }
