@@ -55,6 +55,13 @@ fun main() {
     sayHello2("Hello", *itemToGreetings)
 
     initializeIntArray()
+
+    val person = Person()
+    val person1 = Person("Gary", "Ma")
+    person1.fullName = "Gary Ma"
+    println(person1.fullName)   // output: The new full name is Gary Ma
+
+
     // 49:27
 }
 
