@@ -47,5 +47,20 @@ fun main() {
         println("$key -> $value")
     }
 
+    val itemToGreeting = listOf("Kotlin", "Java")
+    sayHello("Hello", itemToGreeting)
+    sayHello2("Hello", "Kotlin1", "Java1")
     // 49:27
+}
+
+fun sayHello(greeting: String, itemToGreet: List<String>) {
+    itemToGreet.forEach {
+        println("$greeting $it")
+    }
+}
+
+fun sayHello2(greeting: String, vararg itemToGreet: String) {
+    itemToGreet.forEach {
+        println("$greeting $it")
+    }
 }
