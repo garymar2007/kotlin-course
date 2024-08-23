@@ -50,6 +50,11 @@ fun main() {
     val itemToGreeting = listOf("Kotlin", "Java")
     sayHello("Hello", itemToGreeting)
     sayHello2("Hello", "Kotlin1", "Java1")
+
+    val itemToGreetings = arrayOf("Kotlin", "Java")
+    sayHello2("Hello", *itemToGreetings)
+
+    initializeIntArray()
     // 49:27
 }
 
@@ -63,4 +68,12 @@ fun sayHello2(greeting: String, vararg itemToGreet: String) {
     itemToGreet.forEach {
         println("$greeting $it")
     }
+}
+
+fun initializeIntArray() {
+    val a = intArrayOf(1,2,3)
+    val b = intArrayOf(4,5,6)
+    val c = intArrayOf(*a, *b, 7,8,9)
+
+    println(c.joinToString())   // output: 1,2,3,4,5,6,7,8,9
 }
