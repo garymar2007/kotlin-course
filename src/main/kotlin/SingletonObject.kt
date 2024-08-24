@@ -1,7 +1,9 @@
 import java.util.UUID
 
 enum class EntityType {
-    EASY, MEDIUM, HARD
+    EASY, MEDIUM, HARD;
+
+    fun getFormattedName() = name.toLowerCase().capitalize()
 }
 
 object EntityFactory {
@@ -9,7 +11,7 @@ object EntityFactory {
         val id = UUID.randomUUID().toString()
         val name = when(type) {
             EntityType.EASY -> type.name
-            EntityType.MEDIUM -> type.name
+            EntityType.MEDIUM -> type.getFormattedName()
             EntityType.HARD -> type.name
         }
         return Entity1(id, name)
