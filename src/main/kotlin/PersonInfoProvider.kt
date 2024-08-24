@@ -1,4 +1,4 @@
-package org.gary
+import org.gary.Person
 
 interface PersonInfoProvider {
     val providerInfo: String
@@ -16,9 +16,11 @@ interface SessionInfoProvider {
 abstract class BasicInfoProvider : PersonInfoProvider, SessionInfoProvider
 
 
-class BasicInfoProviderImpl : BasicInfoProvider() {
+open class BasicInfoProviderImpl : BasicInfoProvider() {
     override val providerInfo: String
         get() = "BasicInfoProvider"
+
+    protected open val sessionPrefixId: String = "Session prefix id"
 
     override fun printInfo(person: Person) {
         super.printInfo(person)
@@ -26,7 +28,7 @@ class BasicInfoProviderImpl : BasicInfoProvider() {
     }
 
     override fun getSessionId(): String {
-        return "Session abc"
+        return sessionPrefixId
     }
 }
 
