@@ -1,9 +1,10 @@
-import java.util.UUID
+import java.util.*
 
 enum class EntityType {
     EASY, MEDIUM, HARD;
 
-    fun getFormattedName() = name.toLowerCase().capitalize()
+    fun getFormattedName() = name.lowercase(Locale.getDefault())
+        .replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() }
 }
 
 object EntityFactory {
