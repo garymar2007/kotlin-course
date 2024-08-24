@@ -18,4 +18,9 @@ class Person(val firstName: String, val lastName: String) {
     init {
         println("Init 2")
     }
+
+    fun printInfo() {
+        val fullNameToPrint = fullName ?: "Not provided"
+        println("Full name: $fullNameToPrint")
+    }
 }

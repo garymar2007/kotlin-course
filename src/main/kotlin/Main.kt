@@ -60,9 +60,9 @@ fun main() {
     val person1 = Person("Gary", "Ma")
     person1.fullName = "Gary Ma"
     println(person1.fullName)   // output: The new full name is Gary Ma
+    person1.printInfo()         // output: Full name: Gary Ma
 
-
-    // 49:27
+    // 1:20:00
 }
 
 fun sayHello(greeting: String, itemToGreet: List<String>) {
