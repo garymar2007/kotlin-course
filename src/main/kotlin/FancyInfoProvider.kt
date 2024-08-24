@@ -24,4 +24,13 @@ fun main() {
     provider.printInfo(person)
     checkTypes(provider)
     println(provider.getSessionId())
+
+    val provider1 = object : PersonInfoProvider {
+        override val providerInfo: String
+            get() = "New Info Provider"
+
+        fun getSessionId() = "id"
+    }
+    provider1.printInfo(person)
+    println(provider1.getSessionId())
 }
