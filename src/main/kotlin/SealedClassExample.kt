@@ -46,6 +46,37 @@ fun main() {
     }
 
     println(msg)
+
+    val entity1 = EntityFactory1.create(EntityType1.EASY)
+    val entity2 = EntityFactory1.create(EntityType1.EASY)
+
+    if (entity1 == entity2) {
+        println("They are the same")
+    } else {
+        println("They are different")   // output: They are different
+    }
+
+    val entity3 = EntitySealed.Easy("id", "name")
+    val entity4 = EntitySealed.Easy("id", "name")
+    val entity5 = entity3.copy()
+
+    if (entity3 == entity4) {
+        println("They are the same")    // output: They are the same
+    } else {
+        println("They are different")
+    }
+
+    if (entity3 == entity5) {
+        println("They are the same")    // output: They are the same
+    } else {
+        println("They are different")
+    }
+
+    if (entity3 === entity5) {
+        println("They are the same")
+    } else {
+        println("They are different")   // output: They are different
+    }
 }
 
 //2:07:01
