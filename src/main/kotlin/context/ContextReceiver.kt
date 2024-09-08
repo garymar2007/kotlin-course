@@ -1,5 +1,7 @@
 package context
 
+//https://blog.rockthejvm.com/kotlin-context-receivers/
+
 data class Job(val id: JobId, val company: Company, val role: Role, val salary: Salary)
 @JvmInline
 value class JobId(val value: Long)
@@ -72,11 +74,35 @@ interface JsonScope<A> {    // dispatcher receiver
     // receiver
 }
 
-context(JsonScope<A>, Logger)
+context(JsonScope<A>, Logger)   //implicitly dependency injection
 fun <A> printAsJson(aList: List<A>): String {
     consoleLogger.info("Printing as JSON")
     return aList.joinToString(separator = ", ", prefix = "[", postfix = "]") {
         it.toJson()
+    }
+}
+
+interface Jobs {
+    fun findById(id: JobId): Job?
+}
+
+context(Logger)
+class LiveJobs : Jobs {
+    override fun findById(id: JobId): Job? {
+        consoleLogger.info("Searching for job with id $id")
+        return JOBS_DATABASE[id]
+    }
+}
+
+context(JsonScope<Job>, Logger) //non-business logic should be used within context
+class JobController(private val jobs: Jobs) {   //business logic should be passed as a dependency
+    fun jsonById(id: String): String {
+        info("Getting job by id $id to serialize as JSON")
+        val jobId = JobId(id.toLong())
+        return jobs.findById(jobId)?.let {
+            info("Job with Id $id found")
+            return it.toJson()
+        } ?: "No Job Found"
     }
 }
 
